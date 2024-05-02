@@ -1,5 +1,5 @@
 const express = require('express')
-const morgan = require('morgan')
+
 const cors = require('cors')
 
 const app = express()
@@ -49,7 +49,7 @@ app.get('/api/notes/:id', (request, response) => {
 
 app.delete('/api/notes/:id', (request, response) => {
   const id = Number(request.params.id)
-  const filterId = notes.filter((note)=>(note.id !== id))
+  const filterId = notes.filter((note) => (note.id !== id))
   response.send(filterId)
 })
 
@@ -75,6 +75,6 @@ app.post('/api/notes', postConfirmation, (request, response) => {
 
 app.use(errorHandler)
 
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 app.listen(PORT)
 console.log(`server running in port ${PORT}`)
